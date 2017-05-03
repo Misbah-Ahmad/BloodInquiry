@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff0202</color>
+    <color name="colorPrimaryDark">#b92121</color>
+    <color name="colorAccent">#e36161</color>
+    <color name="red">#CC0000</color>
+    <color name="white">#ffffff</color>
+    <color name="grey">#f2f1f1</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="lightPink">#f9d8dd</color>
+    <color name="black">#000</color>
+    <color name="messenger_color">#0084FF</color>
+    <color name="facebook_blue">#3b5998</color>
+</resources>

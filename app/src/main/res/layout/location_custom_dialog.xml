@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/ten_dp"
+        android:layout_margin="@dimen/ten_dp"
+        android:layout_gravity="top|start"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/eighteen_sp"
+        android:text="@string/preferred_location_prompt_string"/>
+
+<android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/ten_dp"
+        android:layout_margin="@dimen/ten_dp"
+        android:hint="@string/donor_location_edit_text"
+        android:id="@+id/preferredLocationEditText"/>
+</android.support.design.widget.TextInputLayout>
+</LinearLayout>

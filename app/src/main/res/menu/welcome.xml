@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:orderInCategory="100"
+        android:title="@string/credit_button_string"
+        app:showAsAction="never"
+        android:id="@+id/actionCredit"/>
+
+    <item
+        android:orderInCategory="100"
+        android:title="@string/about_button_string"
+        app:showAsAction="never"
+        android:id="@+id/actionAbout"/>
+
+    <item
+        android:orderInCategory="100"
+        android:title="@string/exit_button_string"
+        app:showAsAction="never"
+        android:id="@+id/actionExit"/>
+</menu>

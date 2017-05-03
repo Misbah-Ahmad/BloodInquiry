@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/twenty_dp"
+    android:paddingBottom="@dimen/twenty_dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    tools:context="com.chowdhuryfahim.bloodinquiry.HelpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/thirty_dp"
+        android:paddingRight="@dimen/thirty_dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/HelpTextStyle"
+            android:text="@string/registration_instruction_string"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/HelpTextStyle"
+            android:text="@string/donors_instruction_string"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            style="@style/HelpTextStyle"
+            android:text="@string/organization_instruction_string"/>
+
+        <TextView
+            android:layout_gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fifteen_sp"
+            android:drawableStart="@drawable/action_email"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:text="@string/email_addr" />
+
+    </LinearLayout>
+
+</ScrollView>

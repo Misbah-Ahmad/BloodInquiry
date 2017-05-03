@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/donorRegScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:layout_marginTop="@dimen/ten_dp"
+    android:paddingBottom="@dimen/thirty_dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.chowdhuryfahim.bloodinquiry.DonorRegistrationActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donor_name_edit_text">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:id="@+id/donorNameEditText"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donor_password_edit_text"
+                android:id="@+id/donorRegistrationPassInputLayout">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:id="@+id/donorPasswordEditText"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donor_phone_edit_text"
+                android:id="@+id/donorRegistrationPhoneInputLayout">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:id="@+id/donorCellEditText"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="@string/donor_age_edit_text"
+                    android:id="@+id/donorAgeEditText"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:layout_margin="@dimen/ten_dp"
+                    android:background="@drawable/spinner_bg"
+                    android:verticalScrollbarPosition="right"
+                    android:layout_weight="1"
+                    android:id="@+id/donorRegBloodGroupSpinner"/>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:layout_margin="@dimen/ten_dp"
+                    android:background="@drawable/spinner_bg"
+                    android:verticalScrollbarPosition="right"
+                    android:layout_weight="1"
+                    android:id="@+id/donorOrganizationSpinner"/>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/five_dp"
+                android:paddingEnd="@dimen/five_dp"
+                android:paddingLeft="@dimen/five_dp"
+                android:paddingRight="@dimen/five_dp"
+                android:textSize="@dimen/eighteen_sp"
+                android:text="@string/donor_gender_edit_text"
+                android:id="@+id/donorGenderSelectText"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/ten_dp"
+                android:paddingEnd="@dimen/five_dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:id="@+id/donorGenderRadio">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/donor_gender_radio_male"
+                    android:layout_weight=".1"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:id="@+id/donorGenderMale"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/donor_gender_radio_female"
+                    android:layout_weight=".1"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:id="@+id/donorGenderFemale"/>
+
+
+            </RadioGroup>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/five_dp"
+                android:textSize="@dimen/eighteen_sp"
+                android:text="@string/donor_status_edit_text"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/ten_dp"
+                android:paddingEnd="@dimen/five_dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:id="@+id/donorStatusRadio">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/donor_status_radio_available"
+                    android:layout_weight=".1"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:id="@+id/donorStatusYes"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/donor_status_radio_unavailable"
+                    android:layout_weight=".1"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:id="@+id/donorStatusNo"/>
+
+            </RadioGroup>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donor_location_edit_text">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:id="@+id/donorLocationEditText"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatAutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/donor_district_edit_text"
+                    android:id="@+id/districtAutoCompleteText"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+
+</ScrollView>

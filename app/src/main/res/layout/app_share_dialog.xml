@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/fifty_dp"
+    android:paddingBottom="@dimen/fifty_dp">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:paddingStart="@dimen/twenty_dp"
+        android:paddingLeft="@dimen/twenty_dp"
+        android:paddingEnd="@dimen/twenty_dp"
+        android:paddingRight="@dimen/twenty_dp"
+        android:textColor="@color/white"
+        android:drawableStart="@drawable/icon_facebook"
+        android:background="@drawable/share_button_bg"
+        android:text="@string/facebook_share_button_string"
+        android:layout_marginBottom="@dimen/twenty_dp"
+        android:id="@+id/fbAppShareButton"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:paddingStart="@dimen/twenty_dp"
+        android:paddingLeft="@dimen/twenty_dp"
+        android:paddingEnd="@dimen/twenty_dp"
+        android:paddingRight="@dimen/twenty_dp"
+        android:background="@drawable/call_button_bg"
+        android:textColor="@color/white"
+        android:drawableStart="@drawable/icon_messenger"
+        android:text="@string/messenger_share_button_string"
+        android:id="@+id/messengerAppShareButton" />
+
+
+</LinearLayout>

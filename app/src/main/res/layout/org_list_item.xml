@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/fifteen_dp"
+    android:paddingBottom="@dimen/ten_dp"
+    android:paddingTop="@dimen/ten_dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/org_name_string"
+        android:textSize="@dimen/twentyFive_sp"
+        android:layout_marginStart="@dimen/twenty_dp"
+        android:paddingBottom="@dimen/five_dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/orgNameTextView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/twenty_sp"
+        android:layout_marginStart="@dimen/twenty_dp"
+        android:text="@string/org_district_string"
+        android:paddingBottom="@dimen/five_dp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/orgAreaTextView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/org_admin_phone_string"
+        android:layout_marginStart="@dimen/eighteen_sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/fifteen_sp"
+        android:id="@+id/orgPhoneTextView"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/one_dp"
+        android:background="@drawable/list_divider"/>
+
+</LinearLayout>

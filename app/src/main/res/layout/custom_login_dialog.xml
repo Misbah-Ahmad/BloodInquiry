@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingTop="@dimen/thirty_dp"
+    android:paddingBottom="@dimen/thirty_dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="@dimen/twenty_sp"
+        android:padding="@dimen/fifteen_dp"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/login_donor"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:id="@+id/donorLoginDialogButton"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/twenty_sp"
+        android:textStyle="bold"
+        android:padding="@dimen/fifteen_dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/login_org"
+        android:id="@+id/orgLoginDialogButton"/>
+
+
+</LinearLayout>

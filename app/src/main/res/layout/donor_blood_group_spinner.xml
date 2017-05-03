@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/ten_dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/fifteen_dp"
+        android:paddingEnd="@dimen/five_dp"
+        android:paddingLeft="@dimen/five_dp"
+        android:textSize="@dimen/fifteen_sp"
+        android:paddingRight="@dimen/five_dp"
+        android:textColor="@color/red"
+        android:text="@string/donor_bloodgroup_edit_text"
+        android:id="@+id/spinner_item_text"/>
+</LinearLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginLeft="@dimen/twenty_dp"
+    android:layout_marginStart="@dimen/twenty_dp"
+    android:layout_marginEnd="@dimen/twenty_dp"
+    android:layout_marginRight="@dimen/twenty_dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+<ScrollView
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/twenty_dp"
+    android:layout_marginStart="@dimen/twenty_dp"
+    android:layout_marginEnd="@dimen/twenty_dp"
+    android:layout_marginRight="@dimen/twenty_dp"
+    android:gravity="center"
+    android:fadeScrollbars="false"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/twenty_dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/twenty_dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="findDonor"
+                android:contentDescription="@string/a_positive_string"
+                android:src="@drawable/button_a_positive"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="findDonor"
+                android:contentDescription="@string/a_negative_string"
+                android:src="@drawable/button_a_negative"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/twenty_dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="findDonor"
+                android:contentDescription="@string/b_positive_string"
+                android:src="@drawable/button_b_positive"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="findDonor"
+                android:contentDescription="@string/b_negative_string"
+                android:src="@drawable/button_b_negative"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/twenty_dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="findDonor"
+                android:contentDescription="@string/o_positive_string"
+                android:src="@drawable/button_o_positive"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="findDonor"
+                android:contentDescription="@string/o_negative_string"
+                android:src="@drawable/button_o_negative"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="findDonor"
+                android:contentDescription="@string/ab_positive_string"
+                android:src="@drawable/button_ab_positive" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="findDonor"
+                android:contentDescription="@string/ab_negative_string"
+                android:src="@drawable/button_ab_negative"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
+</LinearLayout>

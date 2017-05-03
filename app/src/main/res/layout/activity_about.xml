@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/twenty_dp"
+    android:paddingBottom="@dimen/twenty_dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    tools:context="com.chowdhuryfahim.bloodinquiry.AboutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingLeft="@dimen/thirty_dp"
+        android:paddingRight="@dimen/thirty_dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_head"
+        android:textSize="@dimen/twentyFive_sp"
+        android:padding="@dimen/eight_dp"
+        android:textColor="@color/colorPrimaryDark"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="fill_horizontal"
+        android:textSize="@dimen/fifteen_sp"
+        android:padding="@dimen/eight_dp"
+        android:text="@string/about_text"
+        android:textColor="@color/black"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/fifteen_dp"
+        android:textSize="@dimen/twenty_sp"
+        android:textColor="@color/white"
+        android:stateListAnimator="@animator/button_animator"
+        android:background="@drawable/button_bg"
+        android:layout_marginTop="@dimen/ten_dp"
+        android:layout_marginBottom="@dimen/eight_dp"
+        android:text="@string/rate_button"
+        android:id="@+id/rate_button"/>
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/five_dp"
+        android:textSize="@dimen/fifteen_sp"
+        android:gravity="center"
+        android:drawableStart="@drawable/action_email"
+        android:textColor="@color/black"
+        android:text="@string/email_addr"
+        android:id="@+id/email_button"/>
+
+    </LinearLayout>
+</ScrollView>

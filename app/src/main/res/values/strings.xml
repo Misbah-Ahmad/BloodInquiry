@@ -1,0 +1,169 @@
+<resources>
+
+    <string name="app_name">Blood Inquiry</string>
+    <string name="title_activity_welcome">Blood Inquiry</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="find">Find Donor</string>
+    <string name="icon_description">App Icon</string>
+
+    <!--Activity Label-->
+    <string name="donor_reg_activity_label">Be a Life Saver</string>
+    <string name="register_your_organization">Gather Some Life Savers</string>
+    <string name="organization_list_activity_label">Registered Organizations</string>
+    <string name="help_activity_label">Help</string>
+    <string name="about_activity_label">About</string>
+    <string name="credit_activity_label">Developer</string>
+    <string name="donors_list_activity_label">Donors List</string>
+    <string name="donor_login_activity_label">Donor Login</string>
+    <string name="org_login_activity_label">Organization Login</string>
+    <string name="profile_activity_label">Profile</string>
+
+
+    <!--Strings for Donor Drawer Menu-->
+    <string name="donor_view_profile">View Profile</string>
+    <string name="donor_update_profile">Update Profile</string>
+    <string name="donor_delete_profile">Delete Account</string>
+    <string name="donor_update_status">Update Status</string>
+
+    <string name="give_feedback_string">Feedback</string>
+    <string name="menu_communicate_string">Communicate</string>
+
+    <!--Login Strings-->
+    <string name="login_button">Login</string>
+    <string name="logout_button">Log Out</string>
+    <string name="login_donor">Donor</string>
+    <string name="login_org">Organization</string>
+
+    <!--Strings for Organization Drawer Menu-->
+    <string name="org_view_profile">Organization Profile</string>
+    <string name="org_view_donor_list">See Donor List</string>
+    <string name="org_update_info">Update Info</string>
+    <string name="org_admin_panel">Admin Panel</string>
+    <string name="org_download_list_string">Download Donors List</string>
+    <string name="share_app_string">Share App</string>
+
+    <!--Strings for general user Drawer Menu-->
+
+    <string name="reg_as_donor_string">Register As Donor</string>
+    <string name="reg_as_org_string">Register As Organization</string>
+    <string name="view_organization_list_string">Organization List</string>
+    <string name="set_location_string">Set/Update Location</string>
+
+    <!--Strings for Donor Registration-->
+    <string name="donor_name_edit_text">Name</string>
+    <string name="donor_username_edit_text">Username</string>
+    <string name="donor_password_edit_text">Password</string>
+    <string name="donor_phone_edit_text">Phone</string>
+    <string name="donor_gender_edit_text">Select Gender</string>
+    <string name="donor_bloodgroup_edit_text">Blood Group</string>
+    <string name="donor_status_edit_text">Current Status</string>
+    <string name="donor_location_edit_text">Location</string>
+    <string name="donor_district_edit_text">District</string>
+    <string name="donor_age_edit_text">Age</string>
+    <string name="donor_org_edit_text">Organization</string>
+    <string name="donor_gender_radio_male">Male</string>
+    <string name="donor_gender_radio_female">Female</string>
+    <string name="donor_status_radio_available">Available</string>
+    <string name="donor_status_radio_unavailable">Unavailable</string>
+
+
+    <string name="register_button_string">Submit</string>
+
+    <string name="a_positive_string">A+</string>
+    <string name="a_negative_string">A-</string>
+    <string name="b_positive_string">B+</string>
+    <string name="b_negative_string">B-</string>
+    <string name="o_positive_string">O+</string>
+    <string name="o_negative_string">O-</string>
+    <string name="ab_positive_string">AB+</string>
+    <string name="ab_negative_string">AB-</string>
+
+    <string name="no_account_text">No account yet? Create one</string>
+
+
+    <!--String for Organization Registration-->
+    <string name="org_name_string">Organization</string>
+    <string name="org_admin_name_string">Admin Name</string>
+    <string name="org_admin_phone_string">Phone</string>
+    <string name="org_admin_password_string">Password</string>
+    <string name="org_username_string">Username</string>
+    <string name="org_district_string">District</string>
+
+    <!--Strings for Donor Profile-->
+    <string name="donor_profile_cover_description">Donor Profile Cover Photo</string>
+    <string name="demo_phone_number">01914590820</string>
+    <string name="demo_gender_title">Gender</string>
+    <string name="demo_age">24</string>
+    <string name="demo_location">Chawkbazar, Chittagong</string>
+    <string name="demo_name">Misbah Ahmad</string>
+
+    <!--Strings for Organization Profile-->
+    <string name="org_profile_cover_description">Organization Profile Cover Photo</string>
+    <string name="org_demo_name">Kandari</string>
+    <string name="org_demo_phone">01830221429</string>
+    <string name="org_demo_admin">Shihab</string>
+    <string name="org_demo_admin_title">Admin</string>
+    <string name="org_demo_location">Chittagong</string>
+    <string name="org_demo_username">kandarictg</string>
+    <string name="org_demo_total_donor_title">Total Donors</string>
+    <string name="org_demo_total_donor">523</string>
+
+
+    <!--action menu string-->
+    <string name="about_button_string">About</string>
+    <string name="credit_button_string">Developer</string>
+    <string name="help_button_string">Help</string>
+    <string name="exit_button_string">Exit</string>
+
+
+    <!--Preferred Location Dialog String-->
+    <string name="preferred_location_prompt_string">Enter Your Preferred Location:</string>
+    <string name="location_edittext_hint">Location</string>
+
+
+    <!--Strings for About Actiity-->
+    <string name="about_text">This App is developed  to help people by finding their desired blood donors easily. If this App helps you, we would be glad to help this way  and if you want to inspire this kind of voluntary activity, please Share, Rate and Review this application by clicking on the following Button.\n\nThis app is created for the greater welfare of the people.But if anyone misuses this app, developer of this app will not be responsible.</string>
+    <string name="about_head">Why this App?</string>
+    <string name="rate_button">Rate This App</string>
+    <string name="email_addr">misbahahmad3@hotmail.com</string>
+
+
+    <!--Strings for Help Activity-->
+    <string name="registration_instruction_string"><b>How do I search for donors?</b>
+        \nClick on the \"Find\" button then select blood group, district.Before contacting a donor, please refresh the list to get the updated list of donors.\n</string>
+
+    <string name="donors_instruction_string"><b>How do I register as donor?</b>\nClick on \"Register as Donor\" and fill up the registration form.\nIf you don\'t want to
+        be registered in any of the registered organizations, select \"None\" from the organization list in
+        the registration form.\n\nContact number of female donors will not be published or
+        distributed to all the users. In place of female donors, the number of admin of organization
+        they are registered will be published.\nKeep your account status updated whether
+        you are available to donate blood or not. Your name won\'t be displayed if you are not
+        available to donate.\n</string>
+
+    <string name="organization_instruction_string"><b>How do I register my organization?</b>\nClick on \"Register as Organization\" and fill up the registration form.\nAdmins can download donors list
+    by pressing the download list button.\n\nFor more information, contact us :</string>
+
+
+    <!--Search Strings-->
+    <string name="search_title">Search donor or Location</string>
+
+    <!--Call and Share Dialog -->
+    <string name="call_button_string">Call Donor</string>
+    <string name="messenger_share_button_string">Share on Messenger</string>
+    <string name="facebook_share_button_string">Share on Facebook</string>
+
+
+
+    <!--Facebook API strings-->
+    <string name="facebook_app_id">1896616890628035</string>
+
+    <!--Credit Activity Strings-->
+    <string name="developer_description">Created by :\n<b>Misbah Ahmad Chowdhury Fahim</b>\nStudent, International Islamic University Chittagong\n\nGraphics Design Support :\n<b>Abdur Rahman Mishu</b>\nStudent, International Islamic University Chittagong</string>
+    <string name="copy_right">\u00A9 2017 Misbah Ahmad</string>
+
+</resources>

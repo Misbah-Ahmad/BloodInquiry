@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_reg_donor"
+            android:title="@string/reg_as_donor_string"
+            android:id="@+id/registerDonor" />
+        <item
+            android:icon="@drawable/ic_reg_org"
+            android:title="@string/reg_as_org_string"
+            android:id="@+id/registerOrg"/>
+        <item
+            android:icon="@drawable/ic_view_list"
+            android:title="@string/view_organization_list_string"
+            android:id="@+id/organizationList"/>
+
+        <item
+            android:icon="@drawable/ic_edit_location"
+            android:title="@string/set_location_string"
+            android:id="@+id/locationUpdate" />
+        <item
+            android:icon="@drawable/login"
+            android:title="@string/login_button"
+            android:id="@+id/nav_login" />
+
+        <item
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/share_app_string"
+            android:id="@+id/drawerAppShare"/>
+
+        <item
+            android:icon="@drawable/ic_help_black"
+            android:title="@string/help_button_string"
+            android:id="@+id/actionHelp"/>
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:icon="@drawable/ic_feedback_black"
+                android:title="@string/give_feedback_string"
+                android:id="@+id/takeFeedBack"/>
+        </menu>
+    </item>
+
+</menu>

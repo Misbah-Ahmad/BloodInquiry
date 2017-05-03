@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.chowdhuryfahim.bloodinquiry">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:testOnly="false"
+        android:fullBackupContent="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationName"
+            android:value="@string/app_name" />
+
+
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".DonorRegistrationActivity"
+            android:label="@string/donor_reg_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+        <activity
+            android:name=".DonorSearchActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+
+
+        <activity android:name=".DonorListActivity"
+            android:label="@string/donors_list_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.DonorSearchActivity" />
+
+        </activity>
+
+
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/donor_login_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+
+
+        <activity android:name=".DonorProfileActivity"
+            android:label="@string/profile_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+
+        <activity android:name=".OrgRegistrationActivity"
+            android:label="@string/register_your_organization">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+
+
+        <activity
+            android:name=".OrgListActivity"
+            android:label="@string/organization_list_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+        <activity android:name=".OrgLoginActivity"
+            android:label="@string/org_login_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+        <activity android:name=".OrgProfileActivity"
+            android:label="@string/profile_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.OrgListActivity" />
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/about_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/help_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+        </activity>
+        <activity
+            android:name=".CreditActivity"
+            android:label="@string/credit_activity_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chowdhuryfahim.bloodinquiry.WelcomeActivity" />
+
+        </activity>
+
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1896616890628035"
+            android:exported="true" />
+
+    </application>
+
+
+</manifest>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/five_dp"
+    tools:context="com.chowdhuryfahim.bloodinquiry.DonorListActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/donorRecyclerView">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/twenty_dp"
+        android:layout_marginEnd="@dimen/twenty_dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_refresh"
+        android:id="@+id/refreshButton"/>
+
+
+</RelativeLayout>

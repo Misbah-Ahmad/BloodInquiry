@@ -1,0 +1,70 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+
+    <!-- Custom Dimensions-->
+    <dimen name="one_dp">1dp</dimen>
+    <dimen name="two_dp">2dp</dimen>
+    <dimen name="three_dp">3dp</dimen>
+    <dimen name="four_dp">4dp</dimen>
+    <dimen name="five_dp">5dp</dimen>
+    <dimen name="eight_dp">8dp</dimen>
+    <dimen name="ten_dp">10dp</dimen>
+    <dimen name="twelve_dp">12dp</dimen>
+    <dimen name="fifteen_dp">15dp</dimen>
+    <dimen name="twenty_dp">20dp</dimen>
+    <dimen name="twentyTwo_dp">22dp</dimen>
+    <dimen name="twentyFive_dp">25dp</dimen>
+    <dimen name="thirty_dp">30dp</dimen>
+    <dimen name="thirtyFive_dp">35dp</dimen>
+    <dimen name="forty_dp">40dp</dimen>
+    <dimen name="fortyFive_dp">45dp</dimen>
+    <dimen name="fifty_dp">50dp</dimen>
+    <dimen name="fiftyFive_dp">55dp</dimen>
+    <dimen name="fiftySix_dp">56dp</dimen>
+    <dimen name="sixty_dp">60dp</dimen>
+    <dimen name="sixtyFive_dp">65dp</dimen>
+    <dimen name="seventy_dp">70dp</dimen>
+    <dimen name="seventyFive_dp">75dp</dimen>
+    <dimen name="eighty_dp">80dp</dimen>
+    <dimen name="hundred_dp">100dp</dimen>
+    <dimen name="one_zero_five_dp">105dp</dimen>
+    <dimen name="oneTen_dp">110dp</dimen>
+    <dimen name="oneFifteen_dp">115dp</dimen>
+    <dimen name="oneTwenty_dp">120dp</dimen>
+    <dimen name="oneTwentyTwo_dp">122dp</dimen>
+    <dimen name="oneThirty_dp">130dp</dimen>
+    <dimen name="oneForty_dp">140dp</dimen>
+    <dimen name="oneFifty_dp">150dp</dimen>
+    <dimen name="twoEighty_dp">280dp</dimen>
+    <dimen name="three_hundred_dp">300dp</dimen>
+    <dimen name="four_hundred_dp">400dp</dimen>
+    <dimen name="fourFifty_dp">450dp</dimen>
+    <dimen name="five_hundred_dp">500dp</dimen>
+
+
+    <!-- Custom Dimensions in SP-->
+    <dimen name="five_sp">5sp</dimen>
+    <dimen name="eight_sp">8sp</dimen>
+    <dimen name="ten_sp">10sp</dimen>
+    <dimen name="fifteen_sp">15sp</dimen>
+    <dimen name="eighteen_sp">18sp</dimen>
+    <dimen name="twenty_sp">20sp</dimen>
+    <dimen name="twentyFive_sp">25sp</dimen>
+    <dimen name="thirty_sp">30sp</dimen>
+
+    <!-- Profile View Dimensions-->
+    <dimen name="cover_photo_height">150dp</dimen>
+    <dimen name="cover_fab_margin_top">122dp</dimen>
+
+
+
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
+
+
+</resources>

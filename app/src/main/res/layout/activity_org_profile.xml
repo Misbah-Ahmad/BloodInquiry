@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context="com.chowdhuryfahim.bloodinquiry.OrgProfileActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/oneFifty_dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/org_profile_cover_description"
+        android:src="@drawable/donor_cover"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/twentyFive_sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:paddingStart="@dimen/twenty_dp"
+        android:paddingEnd="@dimen/twenty_dp"
+        android:layout_marginTop="@dimen/one_zero_five_dp"
+        android:text="@string/org_demo_name"
+        android:id="@+id/orgProfileNameText"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/oneFifty_dp"
+        android:clipToPadding="false"
+        android:id="@+id/orgProfileScrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/twenty_dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/org_admin_phone_string" />
+
+            <TextView
+                android:id="@+id/orgProfilePhoneText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/twenty_dp"
+                android:text="@string/org_demo_phone"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/org_demo_admin_title" />
+
+            <TextView
+                android:id="@+id/orgProfileAdminText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/twenty_dp"
+                android:text="@string/org_demo_admin"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/org_username_string"
+                android:id="@+id/orgProfileUserNameLabel"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/twenty_dp"
+                android:textSize="@dimen/twenty_sp"
+                android:textColor="@color/black"
+                android:text="@string/org_demo_username"
+                android:id="@+id/orgProfileUsernameText"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/org_demo_total_donor_title" />
+
+            <TextView
+                android:id="@+id/orgProfileCounterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/twenty_dp"
+                android:text="@string/org_demo_total_donor"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/donor_location_edit_text" />
+
+            <TextView
+                android:id="@+id/orgProfileLocationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/twenty_dp"
+                android:text="@string/org_demo_location"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="@dimen/fiftySix_dp"
+        android:layout_height="@dimen/fiftySix_dp"
+        android:layout_marginEnd="@dimen/fifteen_dp"
+        android:layout_marginTop="@dimen/cover_fab_margin_top"
+        android:layout_gravity="end"
+        android:clickable="true"
+        app:fabSize="normal"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:backgroundTint="@color/colorPrimary"
+        android:onClick="editOrgProfile"
+        android:src="@drawable/ic_mode_edit"
+        android:id="@+id/orgProfileEditButton"/>
+
+
+
+</FrameLayout>
