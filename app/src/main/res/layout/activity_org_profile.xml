@@ -66,6 +66,21 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/twenty_sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email_label"
+                android:id="@+id/orgProfileEmailLabel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/twenty_dp"
+                android:text="@string/demo_email"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_sp"
+                android:id="@+id/orgProfileEmailText" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,7 +113,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/donor_location_edit_text" />
+                android:text="@string/org_location_label" />
 
             <TextView
                 android:id="@+id/orgProfileLocationText"

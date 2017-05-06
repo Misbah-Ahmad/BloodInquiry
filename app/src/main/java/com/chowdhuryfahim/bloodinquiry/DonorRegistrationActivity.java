@@ -42,10 +42,12 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
 
     ProgressDialog pd;
     EditText nameEditText;
+    EditText emailEditText;
     EditText passEditText;
     EditText phoneEditText;
     EditText ageEditText;
     EditText locationEditText;
+
     AppCompatAutoCompleteTextView autoComplete;
 
     TextInputLayout passwordInputLayout;
@@ -64,7 +66,6 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
     ArrayList<String> orgs;
     CustomSpinnerAdapter bloodAdapter;
     CustomSpinnerAdapter orgAdapter;
-    OnlineChecker onlineChecker;
     DataBaseHelper dataBaseHelper;
     LoginPreference loginPreference;
 
@@ -82,14 +83,13 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
         pd = new ProgressDialog(this);
 
         dataBaseHelper = new DataBaseHelper(this);
-        onlineChecker =  new OnlineChecker(this);
 
         initViews();
         setDistrictEditText();
         initData(null);
 
         //Gather Organization Spinner from online or local database
-        if(onlineChecker.isOnline()){
+        if(StaticMethods.isOnline(this)){
             gatherOrg();
         } else if (loginPreference.getBooleanPreferences(LoginPreference.ORG_LOADED)) {
             dataBaseHelper = new DataBaseHelper(this);
@@ -108,6 +108,7 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
         nameEditText = (EditText) findViewById(R.id.donorNameEditText);
         passEditText = (EditText) findViewById(R.id.donorPasswordEditText);
         phoneEditText = (EditText) findViewById(R.id.donorCellEditText);
+        emailEditText = (EditText) findViewById(R.id.donorEmailEditText);
         ageEditText = (EditText) findViewById(R.id.donorAgeEditText);
         locationEditText = (EditText) findViewById(R.id.donorLocationEditText);
         genderRadioGroup = (RadioGroup) findViewById(R.id.donorGenderRadio);
@@ -230,7 +231,6 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.register_button_menu, menu);
-
         return true;
     }
 
@@ -238,7 +238,7 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id==R.id.action_submit_form){
-            if(onlineChecker.isOnline()) {
+            if(StaticMethods.isOnline(this)) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(new View(this).getWindowToken(), 0);
                 registerDonor();
@@ -261,23 +261,29 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
         int age = 0;
         int status= 1;
         boolean res = true;
-        String name = nameEditText.getText().toString();
+        String name = nameEditText.getText().toString().trim();
         String pass = passEditText.getText().toString();
-        String phone = phoneEditText.getText().toString();
+        String phone = phoneEditText.getText().toString().trim();
         String gender="";
-        String location = locationEditText.getText().toString();
+        String location = locationEditText.getText().toString().trim();
         String selectedDist;
+        String email = emailEditText.getText().toString().trim();
 
 
         if(name.length()<3){
             nameEditText.setError("Name is not Valid");
             res = false;
-        }
-
-        if(pass.length()<6){
-            passEditText.setError("Minimum Password Length is 6");
+        } else if(!(name.matches("[a-zA-Z ]+"))){
+            nameEditText.setError("Only alphabets are allowed");
             res = false;
         }
+
+
+        if(!StaticMethods.validateEmail(email)){
+            emailEditText.setError("Invalid email address");
+            res = false;
+        }
+
         if(!(StaticMethods.validatePhone(phone))){
             phoneEditText.setError("Invalid Phone Number");
             res = false;
@@ -288,15 +294,23 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
             res  = false;
         }else{
             age = Integer.parseInt(ageEditText.getText().toString());
-            if(age<18 || age>60){
+            if(age<18 || age>55){
                 ageEditText.setError("Invalid Age");
                 res  = false;
             }
         }
+
+        if(pass.length()<6){
+            passEditText.setError("Minimum Password Length is 6");
+            res = false;
+        }
+
+
         if(bloodGroup!=null && bloodGroup.toLowerCase().contains("blood")){
             showToast("Select a Blood Group");
             res = false;
         }
+
         if(organization!=null && organization.toLowerCase().contains("select")){
             showToast("Select an Organization");
             res = false;
@@ -318,11 +332,12 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
        if(location.length()<4){
            locationEditText.setError("Invalid Location");
            res = false;
-        }
+       } else if(!(location.matches("[a-zA-Z0-9 _,.]+"))){
+           locationEditText.setError("Only alphabets & numbers are allowed");
+           res = false;
+       }
 
-
-
-        try{
+       try{
             selectedDist = autoComplete.getText().toString();
             if(selectedDist.length()>=2) {
                 char[] arr = selectedDist.toCharArray();
@@ -360,7 +375,7 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
                 bloodGroup = bloodGroup.substring(0,3);
             else
                 bloodGroup = bloodGroup.substring(0, 2);
-            signUp(new DonorProfile(name,pass,phone,gender,bloodGroup,status,location, selectedDist,organization,age,0,1));
+            signUp(new DonorProfile(name,email,pass,phone,gender,bloodGroup,status,location, selectedDist,organization,age,0,1));
         }
         return res;
     }
@@ -412,9 +427,7 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
                         loginPreference.setBooleanPreferences(LoginPreference.ORG_LOADED, true);
                         initData(reply.orgProfiles);
                     }
-
                 }
-
             }
         }
     }
@@ -429,15 +442,17 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
 
     private HashMap<String, String> getParams(DonorProfile donorProfile){
         HashMap<String, String> params = new HashMap<>();
-        params.put(DataFields.DONOR_NAME_FIELD, donorProfile.getDonorName());
-        params.put(DataFields.DONOR_PASSWORD_FILED, donorProfile.getDonorPassword());
-        params.put(DataFields.DONOR_PHONE_FIELD, donorProfile.getDonorPhone());
-        params.put(DataFields.DONOR_GENDER_FIELD, donorProfile.getDonorGender());
-        params.put(DataFields.DONOR_BLOODGROUP_FIELD, donorProfile.getDonorBloodGroup());
-        params.put(DataFields.DONOR_STATUS_FIELD, String.valueOf(donorProfile.getDonorStatus()));
-        params.put(DataFields.DONOR_LOCATION_FIELD, donorProfile.getDonorLocation());
-        params.put(DataFields.DONOR_DISTRICT_FIELD, donorProfile.getDonorDistrict());
-        params.put(DataFields.DONOR_AGE_FIELD, String.valueOf(donorProfile.getDonorAge()));
+        params.put(DataFields.DONOR_NAME_FIELD, donorProfile.donorName);
+        params.put(DataFields.DONOR_EMAIL_FIELD, donorProfile.donorEmail);
+        showToast(donorProfile.donorEmail);
+        params.put(DataFields.DONOR_PASSWORD_FILED, donorProfile.donorPassword);
+        params.put(DataFields.DONOR_PHONE_FIELD, donorProfile.donorPhone);
+        params.put(DataFields.DONOR_GENDER_FIELD, donorProfile.donorGender);
+        params.put(DataFields.DONOR_BLOODGROUP_FIELD, donorProfile.donorBloodGroup);
+        params.put(DataFields.DONOR_STATUS_FIELD, String.valueOf(donorProfile.donorStatus));
+        params.put(DataFields.DONOR_LOCATION_FIELD, donorProfile.donorLocation);
+        params.put(DataFields.DONOR_DISTRICT_FIELD, donorProfile.donorDistrict);
+        params.put(DataFields.DONOR_AGE_FIELD, String.valueOf(donorProfile.donorAge));
         params.put(DataFields.DONOR_ORGANIZATION_FIELD, String.valueOf(orgUsername.get(orgPos)));
 
         return params;
@@ -463,8 +478,6 @@ public class DonorRegistrationActivity extends AppCompatActivity implements Resp
         }
 
     }
-
-
 
 
     private void showToast(String o){

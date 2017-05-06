@@ -11,11 +11,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.chowdhuryfahim.bloodinquiry.CustomDesigns.StaticMethods;
-import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.DataBaseHelper;
 import com.chowdhuryfahim.bloodinquiry.models.DonorProfile;
 import com.chowdhuryfahim.bloodinquiry.models.Products;
 import com.chowdhuryfahim.bloodinquiry.volley.GsonRequestIn;
@@ -33,7 +33,8 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
     DonorProfile donorProfile;
     AppCompatButton button;
 
-    OnlineChecker onlineChecker;
+    TextView forgotPasswordText;
+
     boolean authorized = false;
     GsonRequestIn gsonRequestIn;
     ProgressDialog pd;
@@ -50,12 +51,14 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
         passLayout = (TextInputLayout) findViewById(R.id.passinputLayout);
         phoneText = (EditText) findViewById(R.id.userPhone);
         passwordText = (EditText) findViewById(R.id.userPassword);
-        onlineChecker = new OnlineChecker(this);
 
         phoneLayout.setCounterEnabled(true);
         phoneLayout.setCounterMaxLength(11);
 
         passLayout.setPasswordVisibilityToggleEnabled(true);
+
+        forgotPasswordText = (TextView) findViewById(R.id.forgotPasswordText);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
                     pd = new ProgressDialog(LoginActivity.this);
                     pd.setMessage("Authorizing...");
                     pd.setCancelable(false);
-                    if(onlineChecker.isOnline()){
+                    if(StaticMethods.isOnline(LoginActivity.this)){
                         pd.show();
                         authorizeUser(phone, pass);
                     } else {
@@ -153,13 +156,16 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
         }
     }
 
+
+    public void resetPassword(View view){
+        Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+        intent.putExtra("TYPE", "donor");
+        startActivity(intent);
+    }
+
     void errorHandler(String msg){
         Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
 
-    @Override
-    public void onBackPressed() {
-
-    }
 }

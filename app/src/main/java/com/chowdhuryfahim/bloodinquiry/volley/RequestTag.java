@@ -17,6 +17,8 @@ public class RequestTag {
     public static final String GET_DONOR_URL = BASE_URL+"get_donors.php";
     public static final String  ORG_PROFILE_UPDATE_URL= BASE_URL+"update_org.php";
     public static final String DOWNLOAD_URL = BASE_URL+"generate_pdf.php?username=";
+    public static final String EMAIL_SEND_URL = BASE_URL+"mail_helper/mail_sender.php";
+    public static final String RESET_PASSWORD_URL = BASE_URL + "reset_password.php";
 
 
 }

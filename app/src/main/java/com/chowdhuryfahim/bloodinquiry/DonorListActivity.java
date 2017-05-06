@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.chowdhuryfahim.bloodinquiry.CustomDesigns.RecyclerAdapter;
+import com.chowdhuryfahim.bloodinquiry.CustomDesigns.StaticMethods;
 import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.DataBaseHelper;
 import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.DataFields;
 import com.chowdhuryfahim.bloodinquiry.models.DonorProfile;
@@ -96,8 +97,7 @@ public class DonorListActivity extends AppCompatActivity implements Response.Lis
 
     @Override
     public void onClick(View view) {
-        OnlineChecker onlineChecker = new OnlineChecker(this);
-        if (onlineChecker.isOnline()) {
+        if (StaticMethods.isOnline(this)) {
             pd.show();
             loadFromServer();
         } else {
@@ -307,7 +307,7 @@ public class DonorListActivity extends AppCompatActivity implements Response.Lis
     @Override
     public void onBackPressed() {
         InputMethodManager inputMethodManager  = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(inputMethodManager.isActive()){
+        if(inputMethodManager.isAcceptingText()){
             inputMethodManager.hideSoftInputFromWindow(new View(this).getWindowToken(),0);
         } else {
             gotoParent();

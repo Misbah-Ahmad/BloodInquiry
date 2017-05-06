@@ -38,14 +38,17 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
 
     TextView nameText;
     TextView adminText;
+    TextView emailText;
     TextView phoneText;
     TextView donorsText;
     TextView locationText;
     FloatingActionButton fab;
     EditText adminEditText;
+    EditText emailEditText;
     EditText phoneEditText;
     EditText passEditText;
     TextView userNameText;
+    TextView emailLabel;
     ScrollView scrollView;
 
     DataBaseHelper dataBaseHelper;
@@ -62,7 +65,14 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
         setContentView(R.layout.activity_org_profile);
 
         fab = (FloatingActionButton) findViewById(R.id.orgProfileEditButton);
-        if(!(getIntent().hasExtra("EDIT"))) fab.setVisibility(View.GONE);
+        emailText = (TextView) findViewById(R.id.orgProfileEmailText);
+        emailLabel = (TextView) findViewById(R.id.orgProfileEmailLabel);
+
+        if(!(getIntent().hasExtra("EDIT"))){
+            fab.setVisibility(View.GONE);
+            emailText.setVisibility(View.GONE);
+            emailLabel.setVisibility(View.GONE);
+        }
 
         pd = new ProgressDialog(this);
         pd.setCancelable(false);
@@ -110,6 +120,11 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
 
         nameText.setText(org.name);
         adminText.setText(org.admin);
+
+        if(org.email.toLowerCase().equals("blank"))
+            org.email = "None";
+        emailText.setText(org.email);
+
         phoneText.setText(org.phone);
         String counter = Integer.toString(donors);
         donorsText.setText(counter);
@@ -145,10 +160,12 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
         view.findViewById(R.id.orgDistrictEditText).setVisibility(View.GONE);
 
         adminEditText = (EditText) view.findViewById(R.id.orgAdminEditText);
+        emailEditText = (EditText) view.findViewById(R.id.orgEmailEditText);
         phoneEditText = (EditText) view.findViewById(R.id.orgPhoneEditText);
         passEditText = (EditText) view.findViewById(R.id.orgPasswordEditText);
 
         adminEditText.setText(adminText.getText().toString());
+        emailEditText.setText(emailText.getText().toString());
         phoneEditText.setText(phoneText.getText().toString());
 
        ((TextInputLayout)view.findViewById(R.id.orgRegistrationPassInputLayout)).setHint("Password, Leave it blank not to change");
@@ -210,22 +227,38 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
 
     private int validate(){
 
-        if(adminEditText.getText().toString().equals(adminText.getText().toString()) && phoneEditText.getText().toString().equals(phoneText.getText().toString()) && passEditText.getText().toString().length()==0)
+        if(adminEditText.getText().toString().toLowerCase().trim().equals(adminText.getText().toString().toLowerCase()) && emailEditText.getText().toString().toLowerCase().trim().equals(emailText.getText().toString().toLowerCase()) && phoneEditText.getText().toString().trim().equals(phoneText.getText().toString()) && passEditText.getText().toString().length()==0)
             return 0;
+
         boolean invalidFlag = false;
-        if(adminEditText.getText().toString().length()<3) {
+        String temp = adminEditText.getText().toString().trim();
+        if(temp.length()<3) {
             adminEditText.setError("Invalid Name");
             invalidFlag = true;
+        } else if(!(temp.matches("[a-zA-Z ]+"))){
+            adminEditText.setError("Only alphabets are allowed");
+            invalidFlag = true;
         }
-        if(!(StaticMethods.validatePhone(phoneEditText.getText().toString()))){
+
+        temp = emailEditText.getText().toString().trim();
+        if(!(StaticMethods.validateEmail(temp))) {
+            emailEditText.setError("Invalid Email");
+            invalidFlag = true;
+        }
+
+        if(!(StaticMethods.validatePhone(phoneEditText.getText().toString().trim()))){
             phoneEditText.setError("Invalid Phone");
             invalidFlag = true;
         }
+
         if(passEditText.getText().toString().length()>0 && passEditText.getText().toString().length()<6){
             passEditText.setError("Minimum password length is 6");
             invalidFlag = true;
         }
-        if(invalidFlag) return 2;
+
+        if(invalidFlag)
+            return 2;
+
         return 1;
 
     }
@@ -233,12 +266,16 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
     private void updateProfile(){
 
         HashMap<String, String> params = new HashMap<>();
-        String temp = adminEditText.getText().toString();
+        String temp = adminEditText.getText().toString().trim();
 
-        if(!(temp.equals(adminText.getText().toString())))
+        if(!(temp.toLowerCase().equals(adminText.getText().toString().toLowerCase())))
             params.put(OrgFields.ORG_ADMIN_FIELD, temp);
 
-        temp = phoneEditText.getText().toString();
+        temp = emailEditText.getText().toString().trim();
+        if((StaticMethods.validateEmail(temp)))
+            params.put(OrgFields.ORG_EMAIL_FIELD, temp.toLowerCase());
+
+        temp = phoneEditText.getText().toString().trim();
         if(!(temp.equals(phoneText.getText().toString())))
             params.put(OrgFields.ORG_PHONE_FIELD, temp);
 
@@ -252,7 +289,6 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
         VolleyHelper.getInstance(this).addToRequestQueue(gsonRequestIn);
     }
 
-
     @Override
     public void onResponse(Object response) {
         OrgReply reply = (OrgReply) response;
@@ -264,7 +300,6 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
             if(pd!=null && pd.isShowing()){
                 pd.dismiss();
             }
-
             showToast(reply.message);
         }
 
@@ -273,7 +308,8 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        showToast("Connection Error!");
+        pd.dismiss();
+        showToast("Connection Error");
     }
 
     private void updateLocal(OrgProfile orgProfile){
@@ -312,15 +348,16 @@ public class OrgProfileActivity extends AppCompatActivity implements Response.Li
     private void gotoParent(){
         if(getIntent().hasExtra("EDIT")){
             startActivity(new Intent(OrgProfileActivity.this, WelcomeActivity.class));
+            finish();
         }
         else {
             startActivity(new Intent(OrgProfileActivity.this, OrgListActivity.class));
+            finish();
         }
-
     }
 
     @Override
     public void onBackPressed() {
-
+        gotoParent();
     }
 }

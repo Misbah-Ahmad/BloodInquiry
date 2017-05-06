@@ -42,5 +42,7 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "Connect to the internet", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }
 

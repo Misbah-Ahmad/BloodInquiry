@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.chowdhuryfahim.bloodinquiry.CustomDesigns.OrgListViewHolder;
+import com.chowdhuryfahim.bloodinquiry.CustomDesigns.StaticMethods;
 import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.DataBaseHelper;
 import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.OrgFields;
 import com.chowdhuryfahim.bloodinquiry.models.OrgProfile;
@@ -31,7 +32,6 @@ public class OrgListActivity extends AppCompatActivity implements Response.Liste
     LoginPreference loginPreference;
     ProgressDialog pd;
     android.support.design.widget.FloatingActionButton fab;
-    OnlineChecker onlineChecker;
 
 
     @Override
@@ -39,7 +39,6 @@ public class OrgListActivity extends AppCompatActivity implements Response.Liste
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_list);
 
-        onlineChecker = new OnlineChecker(this);
         pd = new ProgressDialog(this);
         pd.setMessage("Loading...");
         pd.setCancelable(false);
@@ -62,7 +61,7 @@ public class OrgListActivity extends AppCompatActivity implements Response.Liste
     }
 
     public void refreshList(View view){
-        if(!(onlineChecker.isOnline())){
+        if(!(StaticMethods.isOnline(this))){
             showToast("No Internet Connection!");
         } else {
             pd.show();
@@ -148,10 +147,6 @@ public class OrgListActivity extends AppCompatActivity implements Response.Liste
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onBackPressed() {
-
-    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -160,8 +155,8 @@ public class OrgListActivity extends AppCompatActivity implements Response.Liste
         intent.putExtra(OrgFields.ORG_USERNAME_FIELD, dataSet.get(i).username);
         startActivity(intent);
         overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
-
     }
+
 
 
 }

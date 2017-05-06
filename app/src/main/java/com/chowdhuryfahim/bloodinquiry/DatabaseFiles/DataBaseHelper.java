@@ -105,6 +105,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
         for (int i=0; i<profiles.size(); i++){
             values.put(DONOR_ID_FIELD, profiles.get(i).getDonorId());
             values.put(DONOR_NAME_FIELD, profiles.get(i).getDonorName());
+            values.put(DONOR_EMAIL_FIELD, profiles.get(i).donorEmail);
             values.put(DONOR_PHONE_FIELD, profiles.get(i).getDonorPhone());
             values.put(DONOR_GENDER_FIELD, profiles.get(i).getDonorGender());
             values.put(DONOR_BLOODGROUP_FIELD, profiles.get(i).getDonorBloodGroup());
@@ -140,6 +141,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
         ContentValues values = new ContentValues();
         values.put(DONOR_ID_FIELD, profiles.getDonorId());
         values.put(DONOR_NAME_FIELD, profiles.getDonorName());
+        values.put(DONOR_EMAIL_FIELD, profiles.donorEmail);
         values.put(DONOR_PHONE_FIELD, profiles.getDonorPhone());
         values.put(DONOR_GENDER_FIELD, profiles.getDonorGender());
         values.put(DONOR_BLOODGROUP_FIELD, profiles.getDonorBloodGroup());
@@ -161,42 +163,43 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
         return 1;
     }
 
-    public ArrayList<DonorProfile> getRows(){
-        SQLiteDatabase dBase;
-        ArrayList<DonorProfile> profiles = new ArrayList<>();
-        Cursor cursor;
-        try{
-            dBase = this.getReadableDatabase();
-            cursor = dBase.rawQuery(SELECT_ALL_QUERY+DONOR_TABLE_NAME,null);
-
-            if(cursor.getCount()<=0){
-                return null;
-            }
-        }catch (Exception e){
-            return  null;
-        }
-        cursor.moveToFirst();
-        do {
-            profiles.add(new DonorProfile(
-                    cursor.getString(cursor.getColumnIndex(DONOR_NAME_FIELD)),
-                    cursor.getString(cursor.getColumnIndex(DONOR_PHONE_FIELD)),
-                    cursor.getString(cursor.getColumnIndex(DONOR_GENDER_FIELD)),
-                    cursor.getString(cursor.getColumnIndex(DONOR_BLOODGROUP_FIELD)),
-                    cursor.getInt(cursor.getColumnIndex(DONOR_STATUS_FIELD)),
-                    cursor.getString(cursor.getColumnIndex(DONOR_LOCATION_FIELD)),
-                    cursor.getString(cursor.getColumnIndex(DONOR_DISTRICT_FIELD)),
-                    cursor.getString(cursor.getColumnIndex(DONOR_ORGANIZATION_FIELD)),
-                    cursor.getInt(cursor.getColumnIndex(DONOR_AGE_FIELD)),
-                    cursor.getInt(cursor.getColumnIndex(DONOR_ID_FIELD)),
-                    cursor.getInt(cursor.getColumnIndex(DONOR_SHOULDSHOW_FIELD))
-            ));
-        } while (cursor.moveToNext());
-
-        cursor.close();
-        dBase.close();
-        return  profiles;
-
-    }
+//    public ArrayList<DonorProfile> getRows(){
+//        SQLiteDatabase dBase;
+//        ArrayList<DonorProfile> profiles = new ArrayList<>();
+//        Cursor cursor;
+//        try{
+//            dBase = this.getReadableDatabase();
+//            cursor = dBase.rawQuery(SELECT_ALL_QUERY+DONOR_TABLE_NAME,null);
+//
+//            if(cursor.getCount()<=0){
+//                return null;
+//            }
+//        }catch (Exception e){
+//            return  null;
+//        }
+//        cursor.moveToFirst();
+//        do {
+//            profiles.add(new DonorProfile(
+//                    cursor.getString(cursor.getColumnIndex(DONOR_NAME_FIELD)),
+//                    cursor.getString(cursor.getColumnIndex(DONOR_EMAIL_FIELD)),
+//                    cursor.getString(cursor.getColumnIndex(DONOR_PHONE_FIELD)),
+//                    cursor.getString(cursor.getColumnIndex(DONOR_GENDER_FIELD)),
+//                    cursor.getString(cursor.getColumnIndex(DONOR_BLOODGROUP_FIELD)),
+//                    cursor.getInt(cursor.getColumnIndex(DONOR_STATUS_FIELD)),
+//                    cursor.getString(cursor.getColumnIndex(DONOR_LOCATION_FIELD)),
+//                    cursor.getString(cursor.getColumnIndex(DONOR_DISTRICT_FIELD)),
+//                    cursor.getString(cursor.getColumnIndex(DONOR_ORGANIZATION_FIELD)),
+//                    cursor.getInt(cursor.getColumnIndex(DONOR_AGE_FIELD)),
+//                    cursor.getInt(cursor.getColumnIndex(DONOR_ID_FIELD)),
+//                    cursor.getInt(cursor.getColumnIndex(DONOR_SHOULDSHOW_FIELD))
+//            ));
+//        } while (cursor.moveToNext());
+//
+//        cursor.close();
+//        dBase.close();
+//        return  profiles;
+//
+//    }
 
 
     public ArrayList<DonorProfile> getRowsByGroupDist(String selection, String[] args){
@@ -224,6 +227,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
         do {
             profiles.add(new DonorProfile(
                     cursor.getString(cursor.getColumnIndex(DONOR_NAME_FIELD)),
+                    cursor.getString(cursor.getColumnIndex(DONOR_EMAIL_FIELD)),
                     cursor.getString(cursor.getColumnIndex(DONOR_PHONE_FIELD)),
                     cursor.getString(cursor.getColumnIndex(DONOR_GENDER_FIELD)),
                     cursor.getString(cursor.getColumnIndex(DONOR_BLOODGROUP_FIELD)),
@@ -269,6 +273,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
         do {
             profile = new DonorProfile(
                     cursor.getString(cursor.getColumnIndex(DONOR_NAME_FIELD)),
+                    cursor.getString(cursor.getColumnIndex(DONOR_EMAIL_FIELD)),
                     cursor.getString(cursor.getColumnIndex(DONOR_PHONE_FIELD)),
                     cursor.getString(cursor.getColumnIndex(DONOR_GENDER_FIELD)),
                     cursor.getString(cursor.getColumnIndex(DONOR_BLOODGROUP_FIELD)),
@@ -339,36 +344,36 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
 
 
 
-    private class DataContainer{
-
-        int donorNameIndex;
-        int donorPhoneIndex;
-        int donorGenderIndex;
-        int donorBloodGroupIndex;
-        int donorStatusIndex;
-        int donorLocationIndex;
-        int donorDistrictIndex;
-        int donorOrganizationIndex;
-        int donorAgeIndex;
-        int donorIdIndex;
-        int donorShouldShowIndex;
-
-        DataContainer(Cursor cursor){
-            this.donorIdIndex = cursor.getColumnIndex(DONOR_ID_FIELD);
-            this.donorNameIndex = cursor.getColumnIndex(DONOR_NAME_FIELD);
-            this.donorPhoneIndex = cursor.getColumnIndex(DONOR_PHONE_FIELD);
-            this.donorGenderIndex = cursor.getColumnIndex(DONOR_GENDER_FIELD);
-            this.donorBloodGroupIndex = cursor.getColumnIndex(DONOR_BLOODGROUP_FIELD);
-            this.donorStatusIndex = cursor.getColumnIndex(DONOR_STATUS_FIELD);
-            this.donorLocationIndex = cursor.getColumnIndex(DONOR_LOCATION_FIELD);
-            this.donorDistrictIndex = cursor.getColumnIndex(DONOR_DISTRICT_FIELD);
-            this.donorAgeIndex = cursor.getColumnIndex(DONOR_AGE_FIELD);
-            this.donorShouldShowIndex = cursor.getColumnIndex(DONOR_SHOULDSHOW_FIELD);
-            this.donorOrganizationIndex = cursor.getColumnIndex(DONOR_ORGANIZATION_FIELD);
-
-        }
-
-    }
+//    private class DataContainer{
+//
+//        int donorNameIndex;
+//        int donorPhoneIndex;
+//        int donorGenderIndex;
+//        int donorBloodGroupIndex;
+//        int donorStatusIndex;
+//        int donorLocationIndex;
+//        int donorDistrictIndex;
+//        int donorOrganizationIndex;
+//        int donorAgeIndex;
+//        int donorIdIndex;
+//        int donorShouldShowIndex;
+//
+//        DataContainer(Cursor cursor){
+//            this.donorIdIndex = cursor.getColumnIndex(DONOR_ID_FIELD);
+//            this.donorNameIndex = cursor.getColumnIndex(DONOR_NAME_FIELD);
+//            this.donorPhoneIndex = cursor.getColumnIndex(DONOR_PHONE_FIELD);
+//            this.donorGenderIndex = cursor.getColumnIndex(DONOR_GENDER_FIELD);
+//            this.donorBloodGroupIndex = cursor.getColumnIndex(DONOR_BLOODGROUP_FIELD);
+//            this.donorStatusIndex = cursor.getColumnIndex(DONOR_STATUS_FIELD);
+//            this.donorLocationIndex = cursor.getColumnIndex(DONOR_LOCATION_FIELD);
+//            this.donorDistrictIndex = cursor.getColumnIndex(DONOR_DISTRICT_FIELD);
+//            this.donorAgeIndex = cursor.getColumnIndex(DONOR_AGE_FIELD);
+//            this.donorShouldShowIndex = cursor.getColumnIndex(DONOR_SHOULDSHOW_FIELD);
+//            this.donorOrganizationIndex = cursor.getColumnIndex(DONOR_ORGANIZATION_FIELD);
+//
+//        }
+//
+//    }
 
 
 
@@ -394,6 +399,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
         values.put(ORG_ID_FIELD, profile.id);
         values.put(ORG_NAME_FIELD, profile.name);
         values.put(ORG_ADMIN_FIELD, profile.admin);
+        values.put(ORG_EMAIL_FIELD, profile.email);
         values.put(ORG_USERNAME_FIELD, profile.username);
         values.put(ORG_PHONE_FIELD, profile.phone);
         values.put(ORG_DISTRICT_FIELD, profile.district);
@@ -428,6 +434,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
             values.put(ORG_ID_FIELD, profiles.get(i).id);
             values.put(ORG_NAME_FIELD, profiles.get(i).name);
             values.put(ORG_ADMIN_FIELD, profiles.get(i).admin);
+            values.put(ORG_EMAIL_FIELD, profiles.get(i).email);
             values.put(ORG_USERNAME_FIELD, profiles.get(i).username);
             values.put(ORG_PHONE_FIELD, profiles.get(i).phone);
             values.put(ORG_DISTRICT_FIELD, profiles.get(i).district);
@@ -473,6 +480,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
             profiles.add(new OrgProfile(cursor.getInt(indices.orgIdIndex),
                     cursor.getString(indices.orgNameIndex),
                     cursor.getString(indices.orgAdminIndex),
+                    cursor.getString(indices.orgEmailIndex),
                     cursor.getString(indices.orgUsernameIndex),
                     cursor.getString(indices.orgPhoneIndex),
                     cursor.getString(indices.orgDistrictIndex)));
@@ -510,6 +518,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
             profile = new OrgProfile(cursor.getInt(indices.orgIdIndex),
                     cursor.getString(indices.orgNameIndex),
                     cursor.getString(indices.orgAdminIndex),
+                    cursor.getString(indices.orgEmailIndex),
                     cursor.getString(indices.orgUsernameIndex),
                     cursor.getString(indices.orgPhoneIndex),
                     cursor.getString(indices.orgDistrictIndex));
@@ -539,6 +548,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
         int orgIdIndex;
         int orgNameIndex;
         int orgAdminIndex;
+        int orgEmailIndex;
         int orgUsernameIndex;
         int orgPhoneIndex;
         int orgDistrictIndex;
@@ -547,6 +557,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements DataFields, OrgF
             this.orgIdIndex = cursor.getColumnIndex(ORG_ID_FIELD);
             this.orgNameIndex = cursor.getColumnIndex(ORG_NAME_FIELD);
             this.orgAdminIndex = cursor.getColumnIndex(ORG_ADMIN_FIELD);
+            this.orgEmailIndex = cursor.getColumnIndex(ORG_EMAIL_FIELD);
             this.orgUsernameIndex = cursor.getColumnIndex(ORG_USERNAME_FIELD);
             this.orgPhoneIndex = cursor.getColumnIndex(ORG_PHONE_FIELD);
             this.orgDistrictIndex = cursor.getColumnIndex(ORG_DISTRICT_FIELD);

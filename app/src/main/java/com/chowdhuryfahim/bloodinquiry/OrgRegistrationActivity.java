@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -23,13 +22,13 @@ import com.chowdhuryfahim.bloodinquiry.volley.GsonRequestIn;
 import com.chowdhuryfahim.bloodinquiry.volley.RequestTag;
 import com.chowdhuryfahim.bloodinquiry.volley.VolleyHelper;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class OrgRegistrationActivity extends AppCompatActivity implements OrgFields, Response.Listener, Response.ErrorListener{
 
     EditText nameEditText;
     EditText adminEditText;
+    EditText emailEditText;
     EditText phoneEditText;
     EditText usernameEditText;
     EditText passEditText;
@@ -59,6 +58,7 @@ public class OrgRegistrationActivity extends AppCompatActivity implements OrgFie
 
         nameEditText = (EditText) findViewById(R.id.orgNameEditText);
         adminEditText = (EditText) findViewById(R.id.orgAdminEditText);
+        emailEditText = (EditText) findViewById(R.id.orgEmailEditText);
         phoneEditText = (EditText) findViewById(R.id.orgPhoneEditText);
         usernameEditText = (EditText) findViewById(R.id.orgUsernameEditText);
         passEditText = (EditText) findViewById(R.id.orgPasswordEditText);
@@ -112,19 +112,32 @@ public class OrgRegistrationActivity extends AppCompatActivity implements OrgFie
     //Validate and Register Organization
     private void registerOrg(){
         boolean ok=true;
-        String name = nameEditText.getText().toString();
-        String admin = adminEditText.getText().toString();
-        String phone = phoneEditText.getText().toString();
+        String name = nameEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim();
+        String admin = adminEditText.getText().toString().trim();
+        String phone = phoneEditText.getText().toString().trim();
         String password = passEditText.getText().toString();
-        String username = usernameEditText.getText().toString();
+        String username = usernameEditText.getText().toString().trim();
         String district;
 
         if(name.length()<4){
             nameEditText.setError("Enter a valid name");
             ok= false;
+        } else if(!(name.matches("[a-zA-Z0-9 _]+"))){
+            nameEditText.setError("Only alphabets & numbers are allowed");
+            ok= false;
         }
+
         if(admin.length()<3){
             adminEditText.setError("Enter a valid name");
+            ok = false;
+        } else if(!(admin.matches("[a-zA-Z ]+"))){
+            adminEditText.setError("Only alphabets are allowed");
+            ok= false;
+        }
+
+        if(!StaticMethods.validateEmail(email)){
+            emailEditText.setError("Invalid email address");
             ok = false;
         }
 
@@ -180,6 +193,7 @@ public class OrgRegistrationActivity extends AppCompatActivity implements OrgFie
             HashMap<String, String> params = new HashMap<>();
             params.put(ORG_NAME_FIELD, name);
             params.put(ORG_ADMIN_FIELD, admin);
+            params.put(ORG_EMAIL_FIELD, email);
             params.put(ORG_PHONE_FIELD, phone);
             params.put(ORG_USERNAME_FIELD, username);
             params.put(ORG_PASSWORD_FIELD, password);
@@ -215,8 +229,4 @@ public class OrgRegistrationActivity extends AppCompatActivity implements OrgFie
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onBackPressed() {
-
-    }
 }

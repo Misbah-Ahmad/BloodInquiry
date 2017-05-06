@@ -8,6 +8,7 @@ public class OrgProfile {
     public int id;
     public String name;
     public String admin;
+    public String email;
     public String username;
     public String password;
     public String phone;
@@ -15,19 +16,21 @@ public class OrgProfile {
 
     public OrgProfile(){}
 
-    public OrgProfile(int id, String name, String admin, String username, String phone, String district) {
+    public OrgProfile(int id, String name, String admin, String email, String username, String phone, String district) {
         this.id = id;
         this.name = name;
         this.admin = admin;
+        this.email = email;
         this.phone = phone;
         this.username = username;
         this.district = district;
         this.password = "";
     }
 
-    public OrgProfile(String name, String admin, String password, String phone, String username, String district) {
+    public OrgProfile(String name, String admin, String email,String password, String phone, String username, String district) {
         this.name = name;
         this.admin = admin;
+        this.email = email;
         this.password = password;
         this.phone = phone;
         this.username = username;

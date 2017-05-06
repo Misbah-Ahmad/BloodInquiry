@@ -9,6 +9,7 @@ package com.chowdhuryfahim.bloodinquiry.models;
 public class DonorProfile {
 
     public String donorName;
+    public String donorEmail;
     public String donorPassword;
     public String donorPhone;
     public String donorGender;
@@ -27,12 +28,13 @@ public class DonorProfile {
 
     }
 
-    public DonorProfile(String donorName, String donorPassword,
+    public DonorProfile(String donorName, String donorEmail, String donorPassword,
                         String donorPhone, String donorGender, String donorBloodGroup,
                         int donorStatus, String donorLocation, String donorDistrict,
                         String donorOrganization, int donorAge, long donorId,
                         int donorShouldShow) {
         this.donorName = donorName;
+        this.donorEmail = donorEmail;
         this.donorPassword = donorPassword;
         this.donorPhone = donorPhone;
         this.donorGender = donorGender;
@@ -47,11 +49,12 @@ public class DonorProfile {
     }
 
     //Constructor without password
-    public DonorProfile(String donorName,  String donorPhone,
+    public DonorProfile(String donorName, String donorEmail, String donorPhone,
                         String donorGender, String donorBloodGroup, int donorStatus,
                         String donorLocation, String donorDistrict, String donorOrganization,
                         int donorAge, long donorId, int donorShouldShow) {
         this.donorName = donorName;
+        this.donorEmail = donorEmail;
         this.donorPhone = donorPhone;
         this.donorGender = donorGender;
         this.donorBloodGroup = donorBloodGroup;
@@ -64,11 +67,12 @@ public class DonorProfile {
         this.donorShouldShow = donorShouldShow;
     }
     //Constructor without password
-    public DonorProfile(String donorName,  String donorPhone,
+    public DonorProfile(String donorName, String donorEmail, String donorPhone,
                         String donorGender, String donorBloodGroup, int donorStatus,
                         String donorLocation, String donorDistrict, String donorOrganization,
                         int donorAge, int donorShouldShow) {
         this.donorName = donorName;
+        this.donorEmail = donorEmail;
         this.donorPhone = donorPhone;
         this.donorGender = donorGender;
         this.donorBloodGroup = donorBloodGroup;

@@ -10,6 +10,7 @@ public interface OrgFields extends CommonQuery {
     String ORG_ID_FIELD = "id";
     String ORG_NAME_FIELD = "name";
     String ORG_ADMIN_FIELD = "admin";
+    String ORG_EMAIL_FIELD = "email";
     String ORG_USERNAME_FIELD = "username";
     String ORG_PASSWORD_FIELD = "password";
     String ORG_PHONE_FIELD = "phone";
@@ -19,6 +20,7 @@ public interface OrgFields extends CommonQuery {
             ORG_ID_FIELD + INTEGER_TYPE + COMMA +
             ORG_NAME_FIELD + VARCHAR_TYPE + COMMA +
             ORG_ADMIN_FIELD + VARCHAR_TYPE + COMMA +
+            ORG_EMAIL_FIELD + VARCHAR_TYPE + COMMA +
             ORG_USERNAME_FIELD + VARCHAR_TYPE + PRIMARY_KEY + COMMA +
             ORG_PHONE_FIELD + VARCHAR_TYPE + COMMA +
             ORG_DISTRICT_FIELD + VARCHAR_TYPE + ")";

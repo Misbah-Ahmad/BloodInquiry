@@ -8,7 +8,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.chowdhuryfahim.bloodinquiry.CustomDesigns.StaticMethods;
 import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.DataBaseHelper;
+import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.DataFields;
 import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.DistrictFields;
+import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.OrgFields;
 import com.chowdhuryfahim.bloodinquiry.models.OrgReply;
 import com.chowdhuryfahim.bloodinquiry.models.Products;
 import com.chowdhuryfahim.bloodinquiry.volley.GsonRequestIn;
@@ -28,6 +30,21 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         getSupportActionBar().hide();
         loginPreference = new LoginPreference(this);
+        dataBaseHelper = new DataBaseHelper(SplashActivity.this);
+
+        if(!(loginPreference.getBooleanPreferences(LoginPreference.IS_ORG_TABLE_UPDATED))) {
+            if(dataBaseHelper.dropTable(OrgFields.ORG_TABLE_NAME)==1){
+                loginPreference.setBooleanPreferences(LoginPreference.ORG_LOADED, false);
+                loginPreference.setBooleanPreferences(LoginPreference.IS_ORG_TABLE_UPDATED, true);
+            }
+        }
+
+        if(!(loginPreference.getBooleanPreferences(LoginPreference.IS_DONOR_TABLE_UPDATED))) {
+            if(dataBaseHelper.dropTable(DataFields.DONOR_TABLE_NAME)==1){
+                loginPreference.setBooleanPreferences(LoginPreference.LOADED, false);
+                loginPreference.setBooleanPreferences(LoginPreference.IS_DONOR_TABLE_UPDATED, true);
+            }
+        }
 
         new async().execute();
     }
@@ -36,7 +53,6 @@ public class SplashActivity extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            dataBaseHelper = new DataBaseHelper(SplashActivity.this);
             if(!(loginPreference.getBooleanPreferences(LoginPreference.IS_DISTRICT_LOADED))){
                 dataBaseHelper.dropTable(DistrictFields.DISTRICT_TABLE_NAME);
                 if(dataBaseHelper.insertDistrict()==1){

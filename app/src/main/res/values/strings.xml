@@ -35,7 +35,7 @@
 
     <!--Login Strings-->
     <string name="login_button">Login</string>
-    <string name="logout_button">Log Out</string>
+    <string name="logout_button">Logout</string>
     <string name="login_donor">Donor</string>
     <string name="login_org">Organization</string>
 
@@ -52,7 +52,7 @@
     <string name="reg_as_donor_string">Register As Donor</string>
     <string name="reg_as_org_string">Register As Organization</string>
     <string name="view_organization_list_string">Organization List</string>
-    <string name="set_location_string">Set/Update Location</string>
+    <string name="set_location_string">Preferred Location</string>
 
     <!--Strings for Donor Registration-->
     <string name="donor_name_edit_text">Name</string>
@@ -62,15 +62,15 @@
     <string name="donor_gender_edit_text">Select Gender</string>
     <string name="donor_bloodgroup_edit_text">Blood Group</string>
     <string name="donor_status_edit_text">Current Status</string>
-    <string name="donor_location_edit_text">Location</string>
-    <string name="donor_district_edit_text">District</string>
+    <string name="donor_location_edit_text">Current Location e.g: Shahbagh</string>
+    <string name="donor_district_edit_text">Current District</string>
     <string name="donor_age_edit_text">Age</string>
     <string name="donor_org_edit_text">Organization</string>
     <string name="donor_gender_radio_male">Male</string>
     <string name="donor_gender_radio_female">Female</string>
     <string name="donor_status_radio_available">Available</string>
     <string name="donor_status_radio_unavailable">Unavailable</string>
-
+    <string name="donor_email_edit_text">Email address</string>
 
     <string name="register_button_string">Submit</string>
 
@@ -84,7 +84,7 @@
     <string name="ab_negative_string">AB-</string>
 
     <string name="no_account_text">No account yet? Create one</string>
-
+    <string name="forgot_password_text">Forgot Password?</string>
 
     <!--String for Organization Registration-->
     <string name="org_name_string">Organization</string>
@@ -94,6 +94,7 @@
     <string name="org_username_string">Username</string>
     <string name="org_district_string">District</string>
 
+
     <!--Strings for Donor Profile-->
     <string name="donor_profile_cover_description">Donor Profile Cover Photo</string>
     <string name="demo_phone_number">01914590820</string>
@@ -101,6 +102,9 @@
     <string name="demo_age">24</string>
     <string name="demo_location">Chawkbazar, Chittagong</string>
     <string name="demo_name">Misbah Ahmad</string>
+    <string name="email_label">Email</string>
+    <string name="demo_email">imiiucian@gmail.com</string>
+
 
     <!--Strings for Organization Profile-->
     <string name="org_profile_cover_description">Organization Profile Cover Photo</string>
@@ -112,6 +116,7 @@
     <string name="org_demo_username">kandarictg</string>
     <string name="org_demo_total_donor_title">Total Donors</string>
     <string name="org_demo_total_donor">523</string>
+    <string name="org_location_label">Location</string>
 
 
     <!--action menu string-->
@@ -125,8 +130,7 @@
     <string name="preferred_location_prompt_string">Enter Your Preferred Location:</string>
     <string name="location_edittext_hint">Location</string>
 
-
-    <!--Strings for About Actiity-->
+    <!--Strings for About Activity-->
     <string name="about_text">This App is developed  to help people by finding their desired blood donors easily. If this App helps you, we would be glad to help this way  and if you want to inspire this kind of voluntary activity, please Share, Rate and Review this application by clicking on the following Button.\n\nThis app is created for the greater welfare of the people.But if anyone misuses this app, developer of this app will not be responsible.</string>
     <string name="about_head">Why this App?</string>
     <string name="rate_button">Rate This App</string>
@@ -146,7 +150,7 @@
         available to donate.\n</string>
 
     <string name="organization_instruction_string"><b>How do I register my organization?</b>\nClick on \"Register as Organization\" and fill up the registration form.\nAdmins can download donors list
-    by pressing the download list button.\n\nFor more information, contact us :</string>
+    by pressing the download list button.\n\nFor more information, contact us :\nmisbahahmad3@hotmail.com</string>
 
 
     <!--Search Strings-->
@@ -158,12 +162,11 @@
     <string name="facebook_share_button_string">Share on Facebook</string>
 
 
-
     <!--Facebook API strings-->
     <string name="facebook_app_id">1896616890628035</string>
 
     <!--Credit Activity Strings-->
-    <string name="developer_description">Created by :\n<b>Misbah Ahmad Chowdhury Fahim</b>\nStudent, International Islamic University Chittagong\n\nGraphics Design Support :\n<b>Abdur Rahman Mishu</b>\nStudent, International Islamic University Chittagong</string>
+    <string name="developer_description">Created by :\n<b>Misbah Ahmad Chowdhury Fahim</b>\nStudent, International Islamic University Chittagong\n\nGraphic Design Support :\n<b>Abdur Rahman Mishu</b>\nStudent, International Islamic University Chittagong</string>
     <string name="copy_right">\u00A9 2017 Misbah Ahmad</string>
 
 </resources>

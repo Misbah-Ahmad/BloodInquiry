@@ -30,21 +30,20 @@
 
             </android.support.design.widget.TextInputLayout>
 
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/donor_password_edit_text"
-                android:id="@+id/donorRegistrationPassInputLayout">
+                android:hint="@string/donor_email_edit_text"
+                android:id="@+id/donorRegistrationEmailInputLayout">
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:id="@+id/donorPasswordEditText"/>
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/donorEmailEditText"/>
 
             </android.support.design.widget.TextInputLayout>
-
-
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,6 +55,20 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:id="@+id/donorCellEditText"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donor_password_edit_text"
+                android:id="@+id/donorRegistrationPassInputLayout">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:id="@+id/donorPasswordEditText"/>
 
             </android.support.design.widget.TextInputLayout>
 

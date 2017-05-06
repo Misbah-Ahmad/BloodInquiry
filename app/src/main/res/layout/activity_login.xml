@@ -68,13 +68,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_marginTop="@dimen/ten_dp"
+            android:layout_marginTop="@dimen/fifteen_dp"
             android:text="@string/no_account_text"
             android:gravity="center"
             android:textSize="@dimen/fifteen_sp"
             android:clickable="true"
             android:onClick="gotoRegistration"
             android:id="@+id/signupText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="@dimen/fifteen_dp"
+            android:text="@string/forgot_password_text"
+            android:gravity="center"
+            android:textSize="@dimen/fifteen_sp"
+            android:clickable="true"
+            android:onClick="resetPassword"
+            android:id="@+id/forgotPasswordText"/>
 
     </LinearLayout>
 

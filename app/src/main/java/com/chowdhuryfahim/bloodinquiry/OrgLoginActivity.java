@@ -11,9 +11,11 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.chowdhuryfahim.bloodinquiry.CustomDesigns.StaticMethods;
 import com.chowdhuryfahim.bloodinquiry.models.OrgProfile;
 import com.chowdhuryfahim.bloodinquiry.models.OrgReply;
 import com.chowdhuryfahim.bloodinquiry.volley.GsonRequestIn;
@@ -30,7 +32,8 @@ public class OrgLoginActivity extends AppCompatActivity implements Response.List
     OrgProfile orgProfile;
     AppCompatButton button;
 
-    OnlineChecker onlineChecker;
+    TextView forgotText;
+
     boolean authorized = false;
     GsonRequestIn gsonRequestIn;
     ProgressDialog pd;
@@ -46,7 +49,7 @@ public class OrgLoginActivity extends AppCompatActivity implements Response.List
         passLayout = (TextInputLayout) findViewById(R.id.orgLoginPassInputLayout);
         usernameText = (TextInputEditText) findViewById(R.id.loginUsernameEditText);
         passwordText = (TextInputEditText) findViewById(R.id.orgLoginPasswordEditText);
-        onlineChecker = new OnlineChecker(this);
+        forgotText = (TextView) findViewById(R.id.orgForgotPasswordText);
 
         passLayout.setPasswordVisibilityToggleEnabled(true);
 
@@ -62,7 +65,7 @@ public class OrgLoginActivity extends AppCompatActivity implements Response.List
                     pd = new ProgressDialog(OrgLoginActivity.this);
                     pd.setMessage("Authorizing...");
                     pd.setCancelable(false);
-                    if(onlineChecker.isOnline()){
+                    if(StaticMethods.isOnline(OrgLoginActivity.this)){
                         pd.show();
                         authorizeUser(username, pass);
                     } else {
@@ -133,13 +136,18 @@ public class OrgLoginActivity extends AppCompatActivity implements Response.List
         errorHandler("Connection Error!");
     }
 
+    public void resetOrgPassword(View view){
+        Intent intent = new Intent(OrgLoginActivity.this, ResetPasswordActivity.class);
+        intent.putExtra("TYPE", "org");
+        startActivity(intent);
+        finish();
+    }
+
+
     void errorHandler(String msg){
         Toast.makeText(OrgLoginActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
 
-    @Override
-    public void onBackPressed() {
 
-    }
 }

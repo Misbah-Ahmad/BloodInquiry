@@ -32,11 +32,9 @@ public class LoginPreference {
     public static final String SEARCH_ORGANIZATION = "searchOrganization";
 
     public static final String USER_ORG = "userOrg";
-    public static final String USER_GROUP = "userGroup";
-    public static final String USER_GENDER = "userGender";
-    public static final String USER_AGE = "userAge";
 
-
+    public static final String IS_DONOR_TABLE_UPDATED = "isDonorTableUpdated";
+    public static final String IS_ORG_TABLE_UPDATED = "isOrgTableUpdated";
 
     SharedPreferences sharedPreferences;
 
@@ -87,6 +85,8 @@ public class LoginPreference {
         editor.commit();
     }
 
+
+
     public String getStringPreferences(String KEY){
         return sharedPreferences.getString(KEY, "none");
     }
@@ -99,9 +99,9 @@ public class LoginPreference {
         return sharedPreferences.getInt(KEY, -1);
     }
 
-    public long getLongPreferences(String KEY){
-        return sharedPreferences.getLong(KEY, -1);
-    }
+//    public long getLongPreferences(String KEY){
+//        return sharedPreferences.getLong(KEY, -1);
+//    }
 
 
 

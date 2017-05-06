@@ -3,7 +3,6 @@ package com.chowdhuryfahim.bloodinquiry;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.MenuItem;
 import android.view.View;
@@ -135,6 +134,5 @@ public class DonorSearchActivity extends AppCompatActivity {
             loginPreference.setStringPreference(LoginPreference.SEARCH_DISTRICT, "none");
         }
         startActivity(new Intent(DonorSearchActivity.this, WelcomeActivity.class));
-        super.onBackPressed();
-    }
+     }
 }

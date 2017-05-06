@@ -10,6 +10,7 @@ public interface DataFields extends CommonQuery{
      String DONOR_TABLE_NAME = "donors_table";
      String DONOR_ID_FIELD = "id";
      String DONOR_NAME_FIELD = "name";
+     String DONOR_EMAIL_FIELD = "email";
      String DONOR_PASSWORD_FILED = "password";
      String DONOR_PHONE_FIELD = "phone";
      String DONOR_GENDER_FIELD = "gender";
@@ -22,11 +23,10 @@ public interface DataFields extends CommonQuery{
      String DONOR_SHOULDSHOW_FIELD = "should_show";
 
 
-
-
     String CREATE_DONOR_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS "+ DONOR_TABLE_NAME + "(" +
         DONOR_ID_FIELD + INTEGER_TYPE + COMMA +
         DONOR_NAME_FIELD + VARCHAR_TYPE + COMMA +
+        DONOR_EMAIL_FIELD + VARCHAR_TYPE + COMMA +
         DONOR_PHONE_FIELD + VARCHAR_TYPE + PRIMARY_KEY + COMMA +
         DONOR_GENDER_FIELD + VARCHAR_TYPE + COMMA +
         DONOR_BLOODGROUP_FIELD + VARCHAR_TYPE + COMMA +

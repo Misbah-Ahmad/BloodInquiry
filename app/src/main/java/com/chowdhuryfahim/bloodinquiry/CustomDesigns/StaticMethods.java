@@ -14,6 +14,9 @@ import com.chowdhuryfahim.bloodinquiry.DatabaseFiles.DataFields;
 import com.chowdhuryfahim.bloodinquiry.LoginPreference;
 import com.chowdhuryfahim.bloodinquiry.volley.RequestTag;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /*
  * Created by Fahim on 4/3/2017.
  */
@@ -21,6 +24,7 @@ import com.chowdhuryfahim.bloodinquiry.volley.RequestTag;
 public class StaticMethods {
 
     public final static String DEVELOPER_EMAIL = "misbahahmad3@hotmail.com";
+
     public static boolean deleteDonorFromLocal(Context context){
         DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
         String arg = new LoginPreference(context).getStringPreferences(LoginPreference.USER_PHONE);
@@ -69,8 +73,13 @@ public class StaticMethods {
     }
 
 
-
-
+    public static boolean validateEmail(String email){
+        //final String EMAIL_REGEX = "^[\\w!#$%'/&*+=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        final String EMAIL_REGEX = "^[\\w!#$%&*+=?{|}~^-]+(?:\\.[\\w!#$%&*+=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        Matcher matcher = pattern.matcher(email);
+        return  matcher.matches();
+    }
 
 
 }

@@ -7,7 +7,6 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -45,6 +44,7 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
     ProgressDialog pd;
     TextView nameTextView;
     TextView phoneTextView;
+    TextView emailTextView;
     TextView bloodTextView;
     TextView genderTextView;
     TextView ageTextView;
@@ -53,14 +53,13 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
     TextView locationTextView;
     FloatingActionButton fab;
 
-
-    OnlineChecker onlineChecker;
     DonorProfile donorProfile;
     OrgProfile orgProfile;
     LoginPreference loginPreference;
     ScrollView scrollView;
 
     EditText nameView;
+    EditText emailView;
     EditText passView;
     EditText phoneView;
     EditText ageView;
@@ -85,7 +84,6 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
         pd.setCancelable(false);
         pd.setMessage("Updating");
 
-        onlineChecker = new OnlineChecker(this);
 
         dataBaseHelper = new DataBaseHelper(this);
         loginPreference = new LoginPreference(this);
@@ -128,6 +126,12 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
         phoneTextView = (TextView) findViewById(R.id.profilePhoneText);
         phoneTextView.setText(loginPreference.getStringPreferences(LoginPreference.USER_PHONE));
 
+        emailTextView = (TextView) findViewById(R.id.profileEmailText);
+        String email = donorProfile.donorEmail;
+        if(email.toLowerCase().equals("blank"))
+            email = "None";
+        emailTextView.setText(email);
+
         bloodTextView = (TextView) findViewById(R.id.profileBloodText);
         bloodTextView.setText(donorProfile.getDonorBloodGroup());
 
@@ -154,7 +158,7 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
     }
 
     public void editDonorProfile(View view){
-        if(onlineChecker.isOnline()){
+        if(StaticMethods.isOnline(this)){
             showDialog();
         } else {
             Toast.makeText(this, "Connect to the Internet", Toast.LENGTH_SHORT).show();
@@ -172,6 +176,9 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
 
         nameView = (EditText) view.findViewById(R.id.donorNameEditText);
         nameView.setText(donorProfile.getDonorName());
+
+        emailView = (EditText) view.findViewById(R.id.donorEmailEditText);
+        emailView.setText(donorProfile.donorEmail);
 
         passView = (EditText) view.findViewById(R.id.donorPasswordEditText);
         TextInputLayout passInputLayout = (TextInputLayout) view.findViewById(R.id.donorRegistrationPassInputLayout);
@@ -212,7 +219,7 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(onlineChecker.isOnline()){
+                        if(StaticMethods.isOnline(DonorProfileActivity.this)){
                             int res = validate();
                             if(res==1){
                                 pd.show();
@@ -258,14 +265,29 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
         int changed= 0;
         boolean invalidFlag = false;
         params = new HashMap<>();
-        String temp = nameView.getText().toString();
+        String temp = nameView.getText().toString().trim();
 
-        if(!(temp.equals(donorProfile.donorName))){
+        if(!(temp.toLowerCase().equals(donorProfile.donorName.toLowerCase()))){
             if(temp.length()<3){
                 nameView.setError("Invalid name");
                 invalidFlag = true;
+            } else if(!(temp.matches("[a-zA-Z ]+"))) {
+                nameView.setError("Only alphabets are allowed");
+                invalidFlag = true;
             } else {
                 params.put(DataFields.DONOR_NAME_FIELD, temp);
+                changed = 1;
+            }
+        }
+
+
+        temp = emailView.getText().toString().trim();
+        if(!(temp.toLowerCase().equals(donorProfile.donorEmail.toLowerCase()))){
+            if(!(StaticMethods.validateEmail(temp))){
+                emailView.setError("Invalid email");
+                invalidFlag = true;
+            } else {
+                params.put(DataFields.DONOR_EMAIL_FIELD, temp);
                 changed = 1;
             }
         }
@@ -281,7 +303,7 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
             }
         }
 
-        temp = phoneView.getText().toString();
+        temp = phoneView.getText().toString().trim();
         if(!(temp.equals(donorProfile.donorPhone))){
             if(!(StaticMethods.validatePhone(temp))){
                 phoneView.setError("Invalid Phone Number");
@@ -292,7 +314,7 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
             }
         }
 
-        temp = ageView.getText().toString();
+        temp = ageView.getText().toString().trim();
         int age = Integer.parseInt(temp);
 
         if(age!=donorProfile.donorAge){
@@ -313,14 +335,18 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
             changed = 1;
         }
 
-        temp = locationView.getText().toString();
-        if(!(temp.equals(donorProfile.donorLocation))){
-            if(temp.length()<4){
+        temp = locationView.getText().toString().trim();
+        if(!(temp.toLowerCase().equals(donorProfile.donorLocation.toLowerCase()))) {
+            if (temp.length() < 4) {
                 locationView.setError("Invalid Location");
                 invalidFlag = true;
+            } else if(!(temp.matches("[a-zA-Z0-9_,. ]+"))){
+                locationView.setError("Only alphabets & numbers are allowed");
+                invalidFlag = true;
+            } else {
+                params.put(DataFields.DONOR_LOCATION_FIELD, temp);
+                changed = 1;
             }
-            params.put(DataFields.DONOR_LOCATION_FIELD, temp);
-            changed = 1;
         }
 
         try{
@@ -366,12 +392,10 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
         VolleyHelper.getInstance(this).addToRequestQueue(gsonRequestIn);
     }
 
-
     @Override
     public void onResponse(Object response) {
         DonorModel reply = (DonorModel) response;
         if(reply.success ==1 && reply.profile!=null){
-
             updateLocal(reply.profile);
         } else {
             if(pd!=null && pd.isShowing()){
@@ -425,5 +449,6 @@ public class DonorProfileActivity extends AppCompatActivity implements Response.
     void showToast(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
 
 }

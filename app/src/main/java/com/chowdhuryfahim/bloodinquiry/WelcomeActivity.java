@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -49,7 +50,6 @@ public class WelcomeActivity extends AppCompatActivity
 
     LoginPreference loginPreference;
     NavigationView navigationView;
-    OnlineChecker onlineChecker;
     AutoCompleteTextView preferredLocationEditText;
 
     CallbackManager callbackManager;
@@ -59,7 +59,6 @@ public class WelcomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        onlineChecker = new OnlineChecker(this);
         loginPreference = new LoginPreference(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -84,15 +83,27 @@ public class WelcomeActivity extends AppCompatActivity
 
 
 
-
+    int backCounter = 0;
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } //else {
-//            super.onBackPressed();
-//        }
+            return;
+        } else if(backCounter<1){
+                backCounter++;
+                showToast("Press back again to exit");
+        } else if(backCounter==1){
+            finishAffinity();
+        }
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                backCounter=0;
+            }
+        }, 1500);
+
     }
 
 
@@ -104,7 +115,7 @@ public class WelcomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.registerDonor) {
-            if(onlineChecker.isOnline()) {
+            if(StaticMethods.isOnline(this)) {
                 startActivity(new Intent(WelcomeActivity.this, DonorRegistrationActivity.class));
                 overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
 
@@ -120,7 +131,7 @@ public class WelcomeActivity extends AppCompatActivity
             }
         } else if (id == R.id.organizationList) {
             if(!(loginPreference.getBooleanPreferences(LoginPreference.ORG_LOADED)) && !StaticMethods.isOnline(this)){
-                showToast("Connect to the internet");
+                showToast("Connect to the internet for the first loading");
             } else {
                 startActivity(new Intent(WelcomeActivity.this, OrgListActivity.class));
                 overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
@@ -234,10 +245,12 @@ public class WelcomeActivity extends AppCompatActivity
         TextView donorText = (TextView) view.findViewById(R.id.donorLoginDialogButton);
         TextView orgLoginButton = (TextView) view.findViewById(R.id.orgLoginDialogButton);
 
+        final AlertDialog loginDialog = builder.create();
 
         donorText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loginDialog.dismiss();
                 startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
                 overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
 
@@ -247,19 +260,19 @@ public class WelcomeActivity extends AppCompatActivity
         orgLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loginDialog.dismiss();
                 startActivity(new Intent(WelcomeActivity.this, OrgLoginActivity.class));
                 overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
 
             }
         });
 
-        AlertDialog dialog = builder.create();
 
-        if(dialog.getWindow()!=null) {
-            dialog.getWindow().getAttributes().windowAnimations = R.style.LoginDialogAnimation;
+        if(loginDialog.getWindow()!=null) {
+            loginDialog.getWindow().getAttributes().windowAnimations = R.style.LoginDialogAnimation;
         }
 
-        dialog.show();
+        loginDialog.show();
     }
 
 
@@ -275,7 +288,7 @@ public class WelcomeActivity extends AppCompatActivity
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(onlineChecker.isOnline()){
+                if(StaticMethods.isOnline(WelcomeActivity.this)){
                     final ProgressDialog pd = new ProgressDialog(WelcomeActivity.this);
                     pd.setMessage("Deleting Account");
                     pd.setCancelable(false);
@@ -333,7 +346,7 @@ public class WelcomeActivity extends AppCompatActivity
 
 
     /*
-    *   Method to SET/UPDATE anonymous users preferred location
+    *   Method to SET/UPDATE users preferred location
     */
     void getPreferredLocation(){
 
@@ -363,7 +376,8 @@ public class WelcomeActivity extends AppCompatActivity
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String preferredLocation  = preferredLocationEditText.getText().toString();
+
+                        String preferredLocation  = validatePreferredLocation();
                         if(preferredLocation.length()<1){
                             loginPreference.setBooleanPreferences(LoginPreference.IS_PREFERRED_LOCATION_SET, false);
                             loginPreference.setStringPreference(LoginPreference.USER_PREFERRED_LOCATION, "none");
@@ -398,6 +412,37 @@ public class WelcomeActivity extends AppCompatActivity
 
         dialog.show();
 
+    }
+
+    String validatePreferredLocation(){
+        String district;
+        try {
+            district = preferredLocationEditText.getText().toString();
+            district = district.trim();
+            if(district.length()>=2) {
+                char[] arr = district.toCharArray();
+                boolean flag = false;
+                for(int i=0;i<arr.length; i++){
+                    if(!flag){
+                        arr[i] = Character.toUpperCase(arr[i]);
+                        flag = true;
+                    }
+                    else if(arr[i] == ' ')
+                        flag = false;
+                    else{
+                        arr[i] = Character.toLowerCase(arr[i]);
+                    }
+                }
+                district = "";
+                for (char c : arr) district += c;
+            } else if(district.length()==0){
+                district = "";
+            }
+        } catch (Exception e){
+            district = "";
+        }
+
+        return district;
     }
 
 
@@ -531,17 +576,6 @@ public class WelcomeActivity extends AppCompatActivity
     }
 
     void sendFeedback(){
-//        Intent sendMailIntent = new Intent(Intent.ACTION_VIEW);
-//        sendMailIntent.setType("plain/text");
-//        sendMailIntent.setData(Uri.parse(StaticMethods.DEVELOPER_EMAIL));
-//        sendMailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
-//        sendMailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {StaticMethods.DEVELOPER_EMAIL});
-//        sendMailIntent.putExtra(Intent.EXTRA_SUBJECT, "Blood Inquiry");
-//        try{
-//            startActivity(sendMailIntent);
-//        }catch (Exception e){
-//            showToast("Gmail Application is not installed or disabled.");
-//        }
 
         Intent sendMailIntent = new Intent(Intent.ACTION_SEND);
         sendMailIntent.setType("message/rfc822");
@@ -561,4 +595,6 @@ public class WelcomeActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }
